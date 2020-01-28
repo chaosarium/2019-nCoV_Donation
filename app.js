@@ -138,6 +138,7 @@ app.get("/", function(req, res){
 			for (var i = 0; i < result.length; i++) {
 			  moneyCount = moneyCount + result[i].donationAmount
       }
+			moneyCount = parseFloat(moneyCount).toFixed(2)
       console.log("Calculated total donation to be: ¥" + moneyCount)
       db.close()   
       res.render('index', {moneyCount: moneyCount});
@@ -160,36 +161,10 @@ app.post("/donate-req", function(req, res){
 
   console.log("request info: " + "|" + fullName + "|" + emailAddress + "|" + grade + "|" + donationAmount + "|" + paymentMethod + "|" + message + "|" + anonymousStatus + "|");
   
-  //check availability
-  // var availabilityCount = 0
-  //
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err
-  //   var dbo = db.db(dbName)
-  //   dbo.collection(collectionName).find({}).toArray(function(err, result) {
-  //     if (err) throw err
-  //     for (var i = 0; i < result.length; i++) {
-  //       if (result[i].Time == time) {
-  //         availabilityCount++
-  //       }
-  //     }
-  //     console.log("Avalibility count:" + availabilityCount)
-  //     db.close()
-  //
-  //     //control flow
-  //     if (availabilityCount < maxPopulation) {
-  //       //add entry to database
-  //       console.log("Availabiligy check passed, adding to database")
-  //       dbInsert(time, firstName, lastName, year, studentID);
-  //       res.render("signuped", {time: time, firstName: firstName, lastName: lastName, year: year, studentID: studentID});
-  //     }
-  //     else{
-  //       console.log("OOPS, ERROR, too many sign-ups")
-  //       //Some Error Reporting Machanism
-  //       res.render("info", {location: "index", infoTitle: "ERROR", infoMessage: "The selected time period is full, please select a different time and signup again. You don't need to pay again."})
-  //     }
-  //   });
-  // });
+  console.log("Adding to database")
+  dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus);
+  res.send("Success");
+
 });
 
 //Signup Page 1
@@ -390,6 +365,6 @@ app.listen(port, function(){
 // console.log(dbCheck("124543"))
 // dbRemoveAll()
 
-dbInsert("Leon Lu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", false)
+// dbInsert("Leon Lu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", false)
 
-dbInsert("Leon Luu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", true)
+// dbInsert("Leon Luu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", true)
