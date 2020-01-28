@@ -31,6 +31,7 @@ const port = 2019
 const url = "mongodb://localhost:27017"
 const dbName = "nCoV"
 const collectionName = "donationRecords"
+const countNO = 1
 
 //=================
 //====Functions====
@@ -58,7 +59,7 @@ function getDateTime() {
 }
 
 //insert entry function
-function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus) {
+function dbInsert(serial, fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus) {
   //manipulate data
   var displayName = ""
   var displayEmail = ""
@@ -81,12 +82,13 @@ function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, 
     if (err) console.log(err);
     var dbo = db.db(dbName);
     //create object
-    var myobj = {fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
+    var myobj = {serial: serial, fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
 
     //insert document
 		dbo.collection(collectionName).insertOne(myobj, function(err, res) {
       if (err) console.log(err);
       console.log("Entry added");
+      countNO ++
 			db.close();
 		});
   });
@@ -162,7 +164,7 @@ app.post("/donate-req", function(req, res){
   console.log("request info: " + "|" + fullName + "|" + emailAddress + "|" + grade + "|" + donationAmount + "|" + paymentMethod + "|" + message + "|" + anonymousStatus + "|");
   
   console.log("Adding to database")
-  dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus);
+  dbInsert(countNO, fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus);
   res.send("Success");
 
 });
