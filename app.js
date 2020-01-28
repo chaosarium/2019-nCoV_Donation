@@ -60,16 +60,20 @@ function getDateTime() {
 //insert entry function
 function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus) {
   //manipulate data
+  var displayName = ""
+  var displayEmail = ""
+  var displayGrade = ""
+  var displayPaymentMethod = ""
   if (anonymousStatus) {
-    var displayName = "Anonymous"
-    var displayEmail = "-"
-    var displayGrade = "-"
-    var displayPaymentMethod = "-"
+    displayName = "Anonymous"
+    displayEmail = "-"
+    displayGrade = "-"
+    displayPaymentMethod = "-"
   } else {
-    var displayName = fullName
-    var displayEmail = emailAddress
-    var displayGrade = grade
-    var displayPaymentMethod = paymentMethod
+    displayName = fullName
+    displayEmail = emailAddress
+    displayGrade = grade
+    displayPaymentMethod = paymentMethod
   }
   
   //connect to mongo client
@@ -140,6 +144,49 @@ app.get("/", function(req, res){
 
 		})
   })
+});
+
+//Donate POST
+app.post("/signup", function(req, res){
+  console.log("sugnup post request recieved")
+  //get post info
+  var time = req.body.time
+  var firstName = req.body.firstName
+  var lastName = req.body.lastName
+  var year = req.body.year
+  var studentID = req.body.studentID
+  console.log("request info: " + "|" + time + "|" + firstName + "|" + lastName + "|" + year + "|" + studentID + "|");
+  
+  //check availability
+  var availabilityCount = 0
+  
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err
+    var dbo = db.db(dbName)
+    dbo.collection(collectionName).find({}).toArray(function(err, result) {
+      if (err) throw err
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].Time == time) {
+          availabilityCount++
+        }
+      }
+      console.log("Avalibility count:" + availabilityCount)
+      db.close()
+      
+      //control flow
+      if (availabilityCount < maxPopulation) {
+        //add entry to database
+        console.log("Availabiligy check passed, adding to database")
+        dbInsert(time, firstName, lastName, year, studentID);
+        res.render("signuped", {time: time, firstName: firstName, lastName: lastName, year: year, studentID: studentID});
+      }
+      else{
+        console.log("OOPS, ERROR, too many sign-ups")
+        //Some Error Reporting Machanism
+        res.render("info", {location: "index", infoTitle: "ERROR", infoMessage: "The selected time period is full, please select a different time and signup again. You don't need to pay again."})
+      }
+    });
+  });
 });
 
 //Signup Page 1
@@ -275,49 +322,6 @@ app.get("/cancel", function(req, res){
 //Erase Page
 app.get("/erase", function(req, res){
   res.render('erase');
-});
-
-//Signup POST
-app.post("/signup", function(req, res){
-  console.log("sugnup post request recieved")
-  //get post info
-  var time = req.body.time
-  var firstName = req.body.firstName
-  var lastName = req.body.lastName
-  var year = req.body.year
-  var studentID = req.body.studentID
-  console.log("request info: " + "|" + time + "|" + firstName + "|" + lastName + "|" + year + "|" + studentID + "|");
-
-  //check availability
-  var availabilityCount = 0
-  
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err
-		var dbo = db.db(dbName)
-		dbo.collection(collectionName).find({}).toArray(function(err, result) {
-			if (err) throw err
-			for (var i = 0; i < result.length; i++) {
-				if (result[i].Time == time) {
-          availabilityCount++
-        }
-      }
-      console.log("Avalibility count:" + availabilityCount)
-      db.close()
-      
-      //control flow
-      if (availabilityCount < maxPopulation) {
-        //add entry to database
-        console.log("Availabiligy check passed, adding to database")
-        dbInsert(time, firstName, lastName, year, studentID);
-        res.render("signuped", {time: time, firstName: firstName, lastName: lastName, year: year, studentID: studentID});
-      }
-      else{
-        console.log("OOPS, ERROR, too many sign-ups")
-        //Some Error Reporting Machanism
-        res.render("info", {location: "index", infoTitle: "ERROR", infoMessage: "The selected time period is full, please select a different time and signup again. You don't need to pay again."})
-      }
-		});
-  });
 });
 
 //Cancel POST
