@@ -31,7 +31,7 @@ const port = 2019
 const url = "mongodb://localhost:27017"
 const dbName = "nCoV"
 const collectionName = "donationRecords"
-const countNO = 1
+var countNO = 1
 
 //=================
 //====Functions====
@@ -82,14 +82,14 @@ function dbInsert(serial, fullName, emailAddress, grade, donationAmount, payment
     if (err) console.log(err);
     var dbo = db.db(dbName);
     //create object
-    var myobj = {serial: serial, fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
+    var myobj = {serial: serial, timeStamp: getDateTime().day + "/" + getDateTime().month + "/" + getDateTime().year + " " + getDateTime().hour + ":" + getDateTime().min + ":" + getDateTime().sec, fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
 
     //insert document
 		dbo.collection(collectionName).insertOne(myobj, function(err, res) {
       if (err) console.log(err);
       console.log("Entry added");
-      countNO ++
-			db.close();
+      countNO++
+      db.close();
 		});
   });
   return
