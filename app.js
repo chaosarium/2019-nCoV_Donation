@@ -128,7 +128,7 @@ function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, 
 //========================
 //Home Page
 app.get("/", function(req, res){
-  var moneyCount = 0
+  var moneyCount = 0.00
   
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
@@ -136,7 +136,7 @@ app.get("/", function(req, res){
 		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
 			for (var i = 0; i < result.length; i++) {
-			  moneyCount = moneyCount + result[i].donationAmount
+			  moneyCount = moneyCount + parseFloat(result[i].donationAmount)
       }
 			moneyCount = parseFloat(moneyCount).toFixed(2)
       console.log("Calculated total donation to be: ¥" + moneyCount)
