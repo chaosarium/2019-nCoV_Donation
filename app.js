@@ -64,7 +64,7 @@ function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, 
   var displayEmail = ""
   var displayGrade = ""
   var displayPaymentMethod = ""
-  if (anonymousStatus) {
+  if (anonymousStatus == "on") {
     displayName = "Anonymous"
     displayEmail = "-"
     displayGrade = "-"
@@ -147,46 +147,49 @@ app.get("/", function(req, res){
 });
 
 //Donate POST
-app.post("/signup", function(req, res){
-  console.log("sugnup post request recieved")
+app.post("/donate-req", function(req, res){
+  console.log("donate post request recieved")
   //get post info
-  var time = req.body.time
-  var firstName = req.body.firstName
-  var lastName = req.body.lastName
-  var year = req.body.year
-  var studentID = req.body.studentID
-  console.log("request info: " + "|" + time + "|" + firstName + "|" + lastName + "|" + year + "|" + studentID + "|");
+  var fullName = req.body.fullName
+  var emailAddress = req.body.emailAddress
+  var grade = req.body.grade
+  var donationAmount = req.body.donationAmount
+  var paymentMethod = req.body.paymentMethod
+  var message = req.body.message
+  var anonymousStatus = req.body.anonymousStatus
+
+  console.log("request info: " + "|" + fullName + "|" + emailAddress + "|" + grade + "|" + donationAmount + "|" + paymentMethod + "|" + message + "|" + anonymousStatus + "|");
   
   //check availability
-  var availabilityCount = 0
-  
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err
-    var dbo = db.db(dbName)
-    dbo.collection(collectionName).find({}).toArray(function(err, result) {
-      if (err) throw err
-      for (var i = 0; i < result.length; i++) {
-        if (result[i].Time == time) {
-          availabilityCount++
-        }
-      }
-      console.log("Avalibility count:" + availabilityCount)
-      db.close()
-      
-      //control flow
-      if (availabilityCount < maxPopulation) {
-        //add entry to database
-        console.log("Availabiligy check passed, adding to database")
-        dbInsert(time, firstName, lastName, year, studentID);
-        res.render("signuped", {time: time, firstName: firstName, lastName: lastName, year: year, studentID: studentID});
-      }
-      else{
-        console.log("OOPS, ERROR, too many sign-ups")
-        //Some Error Reporting Machanism
-        res.render("info", {location: "index", infoTitle: "ERROR", infoMessage: "The selected time period is full, please select a different time and signup again. You don't need to pay again."})
-      }
-    });
-  });
+  // var availabilityCount = 0
+  //
+  // MongoClient.connect(url, function(err, db) {
+  //   if (err) throw err
+  //   var dbo = db.db(dbName)
+  //   dbo.collection(collectionName).find({}).toArray(function(err, result) {
+  //     if (err) throw err
+  //     for (var i = 0; i < result.length; i++) {
+  //       if (result[i].Time == time) {
+  //         availabilityCount++
+  //       }
+  //     }
+  //     console.log("Avalibility count:" + availabilityCount)
+  //     db.close()
+  //
+  //     //control flow
+  //     if (availabilityCount < maxPopulation) {
+  //       //add entry to database
+  //       console.log("Availabiligy check passed, adding to database")
+  //       dbInsert(time, firstName, lastName, year, studentID);
+  //       res.render("signuped", {time: time, firstName: firstName, lastName: lastName, year: year, studentID: studentID});
+  //     }
+  //     else{
+  //       console.log("OOPS, ERROR, too many sign-ups")
+  //       //Some Error Reporting Machanism
+  //       res.render("info", {location: "index", infoTitle: "ERROR", infoMessage: "The selected time period is full, please select a different time and signup again. You don't need to pay again."})
+  //     }
+  //   });
+  // });
 });
 
 //Signup Page 1
