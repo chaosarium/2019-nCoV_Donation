@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
   next()
-})
+});
 
 // app.set('etag', false)
 // app.disable('view cache');
@@ -356,7 +356,7 @@ app.post("/erase", function(req, res){
 
 //Listen
 app.listen(port, function(){
-  console.log("app started on port" + port);
+  console.log("app started on port " + port);
 });
 
 

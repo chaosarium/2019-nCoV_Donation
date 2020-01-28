@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Donate for 2019-nCoV</title>
+  <link rel="icon" href="../public/favicons/favicon.ico">
+  <link rel="stylesheet" href="../public/css/bootstrap.css">
+  <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="mb-4 text-center mt-3">Donate for 2019-nCoV</h1>
+    <div class="row">
+      <div class="col-6 px-5" style="border-right: rgba(0,0,0,0.68) 1px solid;">
+
+        <form method="POST" action="../donate-req">
+          <!-- <form method="POST" action="../reCaptchaTest"> -->
+          <div class="form-group d-none">
+            <input type="text" id="date" name="date" value="<%= date %>" />
+          </div>
+
+          <div class="form-group">
+            <input type="text" required="required" id="fullName" name="fullName"/>
+            <label for="input" class="control-label">Your Name</label><i class="bar"></i>
+          </div>
+
+          <div class="form-group">
+            <input type="text" required="required" id="emailAddress" name="emailAddress"/>
+            <label for="input" class="control-label">Your Email Address</label><i class="bar"></i>
+          </div>
+
+          <div class="form-group mb-1">
+            <span class="mr-2">Your Grade: </span>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="9">
+              <span>7</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="9">
+              <span>8</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="9">
+              <span>9</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="10">
+              <span>10</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="11">
+              <span>11</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="12">
+              <span>12</span>
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label class="pure-material-checkbox">
+              <input type="checkbox" name="anonymousStatus" id="anonymousStatus">
+              <span>Keep my donation private (If checked, your name, grade, and email will not be displayed on the donation list but will still be visible to the fundraising group.)</span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <input type="text" required="required" id="donationAmount" name="donationAmount"/>
+            <label for="input" class="control-label">Amount to Donate (In RMB)</label><i class="bar"></i>
+          </div>
+
+          <div class="form-group mb-1">
+            <span class="mr-2">Payment Method: </span>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="11">
+              <span>Wechat Pay</span>
+            </label>
+            <label class="pure-material-radio mr-2">
+              <input type="radio" name="grade" required="required" value="12">
+              <span>Alipay</span>
+            </label>
+          </div>
+
+          <div class="form-group mt-3">
+            <textarea id="messageInput" name="messageInput" required></textarea>
+            <label for="textarea" class="control-label">Your Message (Optional)</label><i class="bar"></i>
+          </div>
+
+          <div class="checkbox">
+            <label class="pure-material-checkbox">
+              <input type="checkbox" name="ensembleStatus" id="ensembleStatus">
+              <span>By checking this box, you confirm that you have entered the required information accurately and transfered the amount of money you have specified by scanning the QR code. Submitting the form without accurate information causes problems for the the fundrising group, and is totally not cool.</span>
+            </label>
+          </div>
+
+          <!-- <div class="form-group" id="form-group-not-required">
+            <textarea id="remark" id="remark" name="remark"></textarea>
+            <label for="textarea" class="control-label">Remark</label><i class="bar"></i>
+          </div> -->
+
+
+          <input class="btn btn-primary mt-3 mr-2" onclick="if(document.getElementById('ensembleStatus').checked == false) {document.getElementById('remark').required = false} " type="submit"></input>
+
+        </form>
+
+      </div>
+      <div class="col-6"></div>
+    </div>
+
+
+
+  </div>
+
+
+
+  <div class="credit-div">
+    <p class="text-left credit-text float-left" style="width: 100%;">Server code: v1.0, Website: v1.0, initiated by the NHS, StuGo, and Tri-M, designed and programmed by Leon L, ©Humanity</p>
+  </div>
+
+
+  <!-- JQuery -->
+  <!-- <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script> -->
+  <!-- Bootstrap tooltips -->
+  <!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
+  <!-- <script src="/js/main.js"></script> -->
+</body>
+</html>

@@ -96,11 +96,9 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .container {
-    max-width: 760px;
-  }
+
   .credit-div {
-    max-width: 760px;
+    max-width: 720px;
     font-size: 0.65rem;
   }
   table {
@@ -113,11 +111,9 @@ body {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .container {
-    max-width: 1000px;
-  }
+
   .credit-div {
-    max-width: 1000px;
+    max-width: 960px;
   }
   table {
     font-size: 0.8rem;
@@ -134,11 +130,9 @@ body {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1180px;
-  }
+
   .credit-div {
-    max-width: 1180px;
+    max-width: 1140px;
   }
   table {
     font-size: 1rem;
@@ -230,8 +224,8 @@ html {
 .form-radio,
 .form-group {
   position: relative;
-  margin-top: 2.25rem;
-  margin-bottom: 2.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-inline > .form-group,
@@ -575,7 +569,7 @@ html {
   content: "";
   display: inline-block;
   box-sizing: border-box;
-  margin: 2px 10px 2px 0;
+  margin: 2px 4px 2px 0;
   border: solid 2px; /* Safari */
   border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
   border-radius: 50%;
