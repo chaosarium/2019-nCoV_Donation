@@ -30,6 +30,7 @@ app.use((req, res, next) => {
 const port = 2019
 const url = "mongodb://localhost:27017"
 const dbName = "nCoV"
+const collectionName = "donationRecords"
 
 //=================
 //====Functions====
@@ -57,16 +58,29 @@ function getDateTime() {
 }
 
 //insert entry function
-function dbInsert(fullName, emailAddress, studentID) {
+function dbInsert(fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus) {
+  //manipulate data
+  if (anonymousStatus) {
+    var displayName = "Anonymous"
+    var displayEmail = "-"
+    var displayGrade = "-"
+    var displayPaymentMethod = "-"
+  } else {
+    var displayName = fullName
+    var displayEmail = emailAddress
+    var displayGrade = grade
+    var displayPaymentMethod = paymentMethod
+  }
+  
   //connect to mongo client
   MongoClient.connect(url, function(err, db) {
     if (err) console.log(err);
     var dbo = db.db(dbName);
     //create object
-    var myobj = {Time: time, FirstName: firstName, LastName: lastName, Year: year, StudentID: studentID};
+    var myobj = {fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
 
     //insert document
-		dbo.collection("studentRecords").insertOne(myobj, function(err, res) {
+		dbo.collection(collectionName).insertOne(myobj, function(err, res) {
       if (err) console.log(err);
       console.log("Entry added");
 			db.close();
@@ -76,75 +90,53 @@ function dbInsert(fullName, emailAddress, studentID) {
 };
 
 //Remove entry function
-function dbRemove(studentID) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) console.log(err);
-    var dbo = db.db(dbName);
-    
-    //remove document
-		dbo.collection("studentRecords").deleteOne({StudentID: studentID}, function(err, obj) {
-			if (err) console.log(err);
-			console.log("Entry removed");
-			db.close();
-		});
-	});
-};
+// function dbRemove(studentID) {
+//   MongoClient.connect(url, function(err, db) {
+//     if (err) console.log(err);
+//     var dbo = db.db(dbName);
+//
+//     //remove document
+// 		dbo.collection(collectionName).deleteOne({StudentID: studentID}, function(err, obj) {
+// 			if (err) console.log(err);
+// 			console.log("Entry removed");
+// 			db.close();
+// 		});
+// 	});
+// };
 
 //Remove all function
-function dbRemoveAll() {
-  MongoClient.connect(url, function(err, db) {
-    if (err) console.log(err);
-    var dbo = db.db(dbName);
-    
-    //remove document
-		dbo.collection("studentRecords").remove({}, function(err, result) {
-			if (err) console.log(err);
-			console.log("Removed all");
-			db.close();
-		});
-	});
-};
+// function dbRemoveAll() {
+//   MongoClient.connect(url, function(err, db) {
+//     if (err) console.log(err);
+//     var dbo = db.db(dbName);
+//
+//     //remove document
+// 		dbo.collection(collectionName).remove({}, function(err, result) {
+// 			if (err) console.log(err);
+// 			console.log("Removed all");
+// 			db.close();
+// 		});
+// 	});
+// };
 
 //========================
 //====Request Handling====
 //========================
 //Home Page
 app.get("/", function(req, res){
-  var T1Count = 0
-  var T2Count = 0
-  var T3Count = 0
-  var T4Count = 0
-  var T5Count = 0
-  var T6Count = 0
+  var moneyCount = 0
   
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
-		dbo.collection("studentRecords").find({}).toArray(function(err, result) {
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
 			for (var i = 0; i < result.length; i++) {
-				if (result[i].Time == "19:00-19:10") {
-          T1Count++
-        }
-				if (result[i].Time == "19:10-19:20") {
-          T2Count++
-        }
-        if (result[i].Time == "19:20-19:30") {
-          T3Count++
-        }
-        if (result[i].Time == "19:35-19:45") {
-          T4Count++
-        }
-        if (result[i].Time == "19:45-19:55") {
-          T5Count++
-        }
-        if (result[i].Time == "19:55-20:05") {
-          T6Count++
-        }
+			  moneyCount = moneyCount + result[i].donationAmount
       }
-      console.log("count result: " + "|" + T1Count + "|" + T2Count + "|" + T3Count + "|" + T4Count + "|" + T5Count + "|" + T6Count + "|")
+      console.log("Calculated total donation to be: ¥" + moneyCount)
       db.close()   
-      res.render('index', {T1Count: T1Count, T2Count: T2Count, T3Count: T3Count, T4Count: T4Count, T5Count: T5Count, T6Count: T6Count, maxPopulation: maxPopulation});
+      res.render('index', {moneyCount: moneyCount});
 
 		})
   })
@@ -164,7 +156,7 @@ app.get("/signup/:timeSelect", function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
-		dbo.collection("studentRecords").find({}).toArray(function(err, result) {
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].Time == "19:00-19:10") {
@@ -205,7 +197,7 @@ app.get("/signup", function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
-		dbo.collection("studentRecords").find({}).toArray(function(err, result) {
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].Time == "19:00-19:10") {
@@ -246,7 +238,7 @@ app.get("/data", function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
-		dbo.collection("studentRecords").find({}).toArray(function(err, result) {
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
       for (var i = 0; i < result.length; i++) {
 				if (result[i].Time == "19:00-19:10") {
@@ -302,7 +294,7 @@ app.post("/signup", function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
-		dbo.collection("studentRecords").find({}).toArray(function(err, result) {
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].Time == time) {
@@ -342,7 +334,7 @@ app.post("/cancel", function(req, res){
       MongoClient.connect(url, function(err, db) {
         if (err) throw err
         var dbo = db.db(dbName)
-        dbo.collection("studentRecords").find({StudentID: studentID}).toArray(function(err, result) {
+        dbo.collection(collectionName).find({StudentID: studentID}).toArray(function(err, result) {
           if (err) throw err
           if (result.length > 0) {
             dbRemove(studentID);
@@ -390,3 +382,7 @@ app.listen(port, function(){
 // dbRemove("2220067");
 // console.log(dbCheck("124543"))
 // dbRemoveAll()
+
+dbInsert("Leon Lu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", false)
+
+dbInsert("Leon Luu", "2220056@ncpachina.org", 10, 3.14, "W", "Good Luck", true)
