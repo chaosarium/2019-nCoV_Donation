@@ -12,87 +12,94 @@
 <body>
 
   <div class="container">
-    <h1 class="mb-4 text-center mt-3">Donate for 2019-nCoV</h1>
+    <!--Left-->
+    <h1 class="mb-4 text-center mt-3 font-weight-bold">Donate for Wuhan Union Hospital</h1>
     <div class="row">
-      <div class="col-6 px-5" style="border-right: rgba(0,0,0,0.68) 1px solid;">
+      <div class="col-6 px-5 py-2" style="border-right: rgb(238,238,238) 1px solid;">
+
+        <h2 class="">Donation Form</h2>
 
         <form method="POST" action="../donate-req">
           <!-- <form method="POST" action="../reCaptchaTest"> -->
           <div class="form-group d-none">
             <input type="text" id="date" name="date" value="<%= date %>" />
           </div>
-
-          <div class="form-group">
+          
+          <div class="form-group mt-3">
             <input type="text" required="required" id="fullName" name="fullName"/>
-            <label for="input" class="control-label">Your Name</label><i class="bar"></i>
+            <label for="input" class="control-label">Your Name 姓名 (Chinese AND English)</label><i class="bar"></i>
           </div>
 
           <div class="form-group">
             <input type="text" required="required" id="emailAddress" name="emailAddress"/>
-            <label for="input" class="control-label">Your Email Address</label><i class="bar"></i>
+            <label for="input" class="control-label">Your Email Address 邮件地址</label><i class="bar"></i>
           </div>
 
-          <div class="form-group mb-1">
-            <span class="mr-2">Your Grade: </span>
-            <label class="pure-material-radio mr-2">
+          <div class="form-group mb-2">
+            <span class="mr-1">Grade 年级: </span>
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="9">
               <span>7</span>
             </label>
-            <label class="pure-material-radio mr-2">
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="9">
               <span>8</span>
             </label>
-            <label class="pure-material-radio mr-2">
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="9">
               <span>9</span>
             </label>
-            <label class="pure-material-radio mr-2">
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="10">
               <span>10</span>
             </label>
-            <label class="pure-material-radio mr-2">
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="11">
               <span>11</span>
             </label>
-            <label class="pure-material-radio mr-2">
+            <label class="pure-material-radio mr-1">
               <input type="radio" name="grade" required="required" value="12">
               <span>12</span>
             </label>
-          </div>
-
-          <div class="checkbox">
-            <label class="pure-material-checkbox">
-              <input type="checkbox" name="anonymousStatus" id="anonymousStatus">
-              <span>Keep my donation private (If checked, your name, grade, and email will not be displayed on the donation list but will still be visible to the fundraising group.)</span>
+            <label class="pure-material-radio mr-1">
+              <input type="radio" name="grade" required="required" value="12">
+              <span>Other</span>
             </label>
           </div>
 
           <div class="form-group">
-            <input type="text" required="required" id="donationAmount" name="donationAmount"/>
-            <label for="input" class="control-label">Amount to Donate (In RMB)</label><i class="bar"></i>
+            <input type="number" required="required" id="donationAmount" name="donationAmount" step="0.01" min="0.01"/>
+            <label for="input" class="control-label">Amount to Donate 捐款金额 (In RMB 人民币)</label><i class="bar"></i>
           </div>
 
           <div class="form-group mb-1">
-            <span class="mr-2">Payment Method: </span>
+            <span class="mr-2">Payment Method 捐款方式: </span>
             <label class="pure-material-radio mr-2">
-              <input type="radio" name="grade" required="required" value="11">
-              <span>Wechat Pay</span>
+              <input type="radio" name="paymentMethod" required="required" value="11" onclick="document.getElementById('QRCode').src='../public/assets/wechatpay.jpg'">
+              <span>WeChat Pay</span>
             </label>
             <label class="pure-material-radio mr-2">
-              <input type="radio" name="grade" required="required" value="12">
+              <input type="radio" name="paymentMethod" required="required" value="12" onclick="document.getElementById('QRCode').src='../public/assets/alipay.jpg'">
               <span>Alipay</span>
             </label>
           </div>
 
           <div class="form-group mt-3">
             <textarea id="messageInput" name="messageInput" required></textarea>
-            <label for="textarea" class="control-label">Your Message (Optional)</label><i class="bar"></i>
+            <label for="messageInput" class="control-label">Your Message 你的留言 (Optional)</label><i class="bar"></i>
           </div>
 
           <div class="checkbox">
             <label class="pure-material-checkbox">
-              <input type="checkbox" name="ensembleStatus" id="ensembleStatus">
-              <span>By checking this box, you confirm that you have entered the required information accurately and transfered the amount of money you have specified by scanning the QR code. Submitting the form without accurate information causes problems for the the fundrising group, and is totally not cool.</span>
+              <input type="checkbox" name="anonymousStatus" id="anonymousStatus">
+              <span>Keep my donation private (If checked, your name, grade, and email will not be displayed on the donation list but will still be visible to the fundraising group.) 保持我的捐款不公开（如果选中，您的姓名，年级和电子邮件将不会显示在捐款列表中，但仍对筹款团队可见。）</span>
+            </label>
+          </div>
+
+          <div class="checkbox mt-3">
+            <label class="pure-material-checkbox">
+              <input type="checkbox" name="confirmStatus" id="confirmStatus" required>
+              <span>By checking this box, you confirm that you have entered the required information accurately and transferred the amount of money you have specified by scanning the QR code. Submitting the form without accurate information causes problems for the the fundraising group, which is totally not cool. 通过选中此框，您确认您输入了正确的信息，并通过扫描二维码转帐了指定的金额。 在没有准确信息的情况下提交表格会给筹款团队造成麻烦，这绝对不酷。</span>
             </label>
           </div>
 
@@ -101,13 +108,41 @@
             <label for="textarea" class="control-label">Remark</label><i class="bar"></i>
           </div> -->
 
+          <input class="btn btn-primary mt-3 mr-2" onclick="document.getElementById('messageInput').required = false " type="submit"/>
 
-          <input class="btn btn-primary mt-3 mr-2" onclick="if(document.getElementById('ensembleStatus').checked == false) {document.getElementById('remark').required = false} " type="submit"></input>
+          <a class="btn btn-outline-primary mt-3 mr-2 text-primary" href="#">Donation History</a>
+
 
         </form>
 
       </div>
-      <div class="col-6"></div>
+
+      <!--Right-->
+      <div class="col-6 px-5 py-2">
+
+        <h3 class="font-weight-light">Fundraising Status</h3>
+
+        <h3 class="text-right"><span class="display-4 font-weight-normal">¥ 3283.31</span><span class="font-weight-light"> in total</span></h3>
+
+        <h3 class="mt-3 font-weight-light">Time Remaining</h3>
+
+        <h3 class="text-right"><span class="display-4 font-weight-normal" id="clock"></span>
+        </h3>
+
+        <hr>
+
+        <h2 class="mt-3 text-center font-weight-bold">Donation QR Code</h2>
+        <div class="mx-xl-5">
+          <img class="img-fluid" id="QRCode" src="../public/assets/wechatpay.jpg" alt="">
+        </div>
+
+
+        <h3 class="mt-3 font-weight-bold text-center">PRESENTED BY</h3>
+        <img class="img-fluid" src="../public/assets/logos.jpg" alt="">
+
+
+      </div>
+
     </div>
 
 
@@ -117,16 +152,25 @@
 
 
   <div class="credit-div">
-    <p class="text-left credit-text float-left" style="width: 100%;">Server code: v1.0, Website: v1.0, initiated by the NHS, StuGo, and Tri-M, designed and programmed by Leon L, ©Humanity</p>
+    <p class="text-left credit-text float-left" style="width: 100%;">Server code: v1.0, Website: v1.0, initiated by Vibe, NHS, StuGo, and Tri-M, designed and programmed by Leon L, Copyright ©Humanity</p>
   </div>
 
 
   <!-- JQuery -->
-  <!-- <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script> -->
+  <script type="text/javascript" src="../public/js/jquery-3.4.0.min.js"></script>
+  <!-- Countdown -->
+  <script type="text/javascript" src="../public/js/jquery.countdown.min.js"></script>
   <!-- Bootstrap tooltips -->
   <!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
   <!-- Bootstrap core JavaScript -->
   <!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
-  <!-- <script src="/js/main.js"></script> -->
+<!--   <script src="../public/js/main.js"></script>-->
+  <script>
+      $('#clock').countdown('2020/2/1', function(event) {
+          var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+          $(this).html(event.strftime(totalHours + ':%M:%S'));
+      });
+
+  </script>
 </body>
 </html>

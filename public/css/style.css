@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');*/
 
 /* Table Styling */
 .border-light-right {
@@ -35,6 +35,10 @@ td {
   color: grey;
 }
 
+.display-4 {
+  font-size: 3rem;
+}
+
 
 /* Overall styling */
 /* #particles-js, #particles-js2 {
@@ -69,7 +73,7 @@ body {
   }
   .credit-div {
     max-width: 620px;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
 
   }
   td, th {
@@ -81,7 +85,7 @@ body {
 @media (min-width: 576px) {
   .credit-div {
     max-width: 540px;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
 
   }
   table {
@@ -99,7 +103,7 @@ body {
 
   .credit-div {
     max-width: 720px;
-    font-size: 0.65rem;
+    font-size: 1rem;
   }
   table {
     font-size: 0.7rem;
@@ -116,7 +120,7 @@ body {
     max-width: 960px;
   }
   table {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   td, th {
     padding: 5px;
@@ -157,7 +161,7 @@ body {
 .credit-div {
   margin-left: auto;
   margin-right: auto;
-  color: rgb(175, 175, 175);
+  color: rgb(141, 141, 141);
 }
 
 .credit-text {
@@ -178,7 +182,7 @@ html {
 
 .btn {
   border-radius: 3px;
-  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12), 0px 3px 15px 1px rgba(0, 0, 0, 0.14);
+  /*box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12), 0px 3px 15px 1px rgba(0, 0, 0, 0.14);*/
 }
 
 
@@ -216,16 +220,11 @@ html {
   vertical-align: bottom;
 } */
 
-
-
-
-
-
 .form-radio,
 .form-group {
   position: relative;
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
 .form-inline > .form-group,
