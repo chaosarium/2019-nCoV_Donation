@@ -11,7 +11,7 @@ const request = require('request');
 const fs = require("fs");
 const colours = require('colors');
 const CronJob = require('cron').CronJob;
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 //caching method
