@@ -167,127 +167,16 @@ app.post("/donate-req", function(req, res){
 
 });
 
-//Signup Page 1
-app.get("/signup/:timeSelect", function(req, res){
-  var timeSelect = req.params.timeSelect;
-  console.log("selected time is " + timeSelect)
-  var T1Count = 0
-  var T2Count = 0
-  var T3Count = 0
-  var T4Count = 0
-  var T5Count = 0
-  var T6Count = 0
-  
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err
-		var dbo = db.db(dbName)
-		dbo.collection(collectionName).find({}).toArray(function(err, result) {
-			if (err) throw err
-			for (var i = 0; i < result.length; i++) {
-				if (result[i].Time == "19:00-19:10") {
-          T1Count++
-        }
-				if (result[i].Time == "19:10-19:20") {
-          T2Count++
-        }
-        if (result[i].Time == "19:20-19:30") {
-          T3Count++
-        }
-        if (result[i].Time == "19:35-19:45") {
-          T4Count++
-        }
-        if (result[i].Time == "19:45-19:55") {
-          T5Count++
-        }
-        if (result[i].Time == "19:55-20:05") {
-          T6Count++
-        }
-      }
-      console.log("count result: " + "|" + T1Count + "|" + T2Count + "|" + T3Count + "|" + T4Count + "|" + T5Count + "|" + T6Count + "|")
-      db.close()   
-      res.render('signup', {T1Count: T1Count, T2Count: T2Count, T3Count: T3Count, T4Count: T4Count, T5Count: T5Count, T6Count: T6Count, timeSelect: timeSelect, maxPopulation: maxPopulation})
-		})
-  })
-});
-//Signup Page 2
-app.get("/signup", function(req, res){
-  var timeSelect = 0;
-  var T1Count = 0
-  var T2Count = 0
-  var T3Count = 0
-  var T4Count = 0
-  var T5Count = 0
-  var T6Count = 0
-  
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err
-		var dbo = db.db(dbName)
-		dbo.collection(collectionName).find({}).toArray(function(err, result) {
-			if (err) throw err
-			for (var i = 0; i < result.length; i++) {
-				if (result[i].Time == "19:00-19:10") {
-          T1Count++
-        }
-				if (result[i].Time == "19:10-19:20") {
-          T2Count++
-        }
-        if (result[i].Time == "19:20-19:30") {
-          T3Count++
-        }
-        if (result[i].Time == "19:35-19:45") {
-          T4Count++
-        }
-        if (result[i].Time == "19:45-19:55") {
-          T5Count++
-        }
-        if (result[i].Time == "19:55-20:05") {
-          T6Count++
-        }
-      }
-      console.log("count result: " + "|" + T1Count + "|" + T2Count + "|" + T3Count + "|" + T4Count + "|" + T5Count + "|" + T6Count + "|")
-      db.close()   
-      res.render('signup', {T1Count: T1Count, T2Count: T2Count, T3Count: T3Count, T4Count: T4Count, T5Count: T5Count, T6Count: T6Count, timeSelect: timeSelect, maxPopulation: maxPopulation})
-		})
-  })
-});
-
 //Data Page
 app.get("/data", function(req, res){
-  var T1Count = 0
-  var T2Count = 0
-  var T3Count = 0
-  var T4Count = 0
-  var T5Count = 0
-  var T6Count = 0
-  
+ 
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
 		dbo.collection(collectionName).find({}).toArray(function(err, result) {
 			if (err) throw err
-      for (var i = 0; i < result.length; i++) {
-				if (result[i].Time == "19:00-19:10") {
-          T1Count++
-        }
-				if (result[i].Time == "19:10-19:20") {
-          T2Count++
-        }
-        if (result[i].Time == "19:20-19:30") {
-          T3Count++
-        }
-        if (result[i].Time == "19:35-19:45") {
-          T4Count++
-        }
-        if (result[i].Time == "19:45-19:55") {
-          T5Count++
-        }
-        if (result[i].Time == "19:55-20:05") {
-          T6Count++
-        }
-      }
-      console.log("count result: " + "|" + T1Count + "|" + T2Count + "|" + T3Count + "|" + T4Count + "|" + T5Count + "|" + T6Count + "|")
       db.close()   
-      res.render('data', {T1Count: T1Count, T2Count: T2Count, T3Count: T3Count, T4Count: T4Count, T5Count: T5Count, T6Count: T6Count, dataList: result, maxPopulation: maxPopulation})
+      res.render('data', {dataList: result})
 		})
   })
 });
