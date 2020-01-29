@@ -13,9 +13,10 @@
 
   <div class="container">
     <!--Left-->
-    <h1 class="mb-5 text-center mt-1 font-weight-bold">Donate for Wuhan Union Hospital</h1>
+    <h1 class="mb-xl-5 mb-4 text-center mt-1 font-weight-bold">Donate for Wuhan Union Hospital</h1>
     <div class="row">
-      <div class="col-6 px-5 py-2" style="border-right: rgb(238,238,238) 1px solid;">
+      <!--Left-->
+      <div class="col-lg-6 col-12 px-xl-5 px-xl-3 py-2" style="@media (min-width: 768px) {border-right: rgb(238,238,238) 1px solid;}">
 
         <h2 class="font-weight-bold">Donation Form</h2>
 
@@ -114,27 +115,28 @@
       </div>
 
       <!--Right-->
-      <div class="col-6 px-5 py-2">
+      <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2">
 
         <h3 class="font-weight-light">Fundraising Status</h3>
-        <h3 class="text-right"><span class="display-4 font-weight-normal">¥ <%= moneyCount%></span><span class="font-weight-light"> in total</span></h3>
+        <h3 class="text-right"><span class="display-4 font-weight-bold">¥ <%= moneyCount%></span><span class="font-weight-light"> in total</span></h3>
 
         <h3 class="mt-3 font-weight-light">Time Remaining</h3>
-        <h3 class="text-right"><span class="display-4 font-weight-normal" id="clock"></span>
+        <h3 class="text-right"><span class="display-4 font-weight-bold" id="clock"></span>
         </h3>
 
-        <a class="btn btn-lg btn-secondary mt-3 mr-3" href="data">Donation History</a>
-        <a class="btn btn-lg btn-secondary mt-3" href="info">Donation Information</a>
+        <a class="btn btn-lg btn-secondary mt-lg-3 mr-3" href="data">Donation History</a>
+        <a class="btn btn-lg btn-secondary mt-lg-3" href="info">Donation Information</a>
 
-        <hr>
+        <hr class="mt-lg-4 mb-4">
 
-        <h2 class="mt-3 text-center font-weight-bold">Donation QR Code</h2>
-        <div class="mx-xl-5">
-          <img class="img-fluid" id="QRCode" src="assets/wechatpay.jpg" alt="">
+        <h2 class="mt-3 mb-3 text-center font-weight-bold">Donation QR Code</h2>
+        <p>If you wish to switch to Alipay, choose "Alipay" in the donation form. Please make sure that the payment remark includes your name and email and that the amount you paied matches the amount you have specified in the form. 如果您希望切换到支付宝，请在捐赠表格中选择“支付宝”。 请确保付款备注中包含您的姓名和电子邮件，并且您支付的金额与表格中指定的金额相符</p>
+        <div class="mx-xl-5 text-md-center">
+          <img class="img-fluid mt-2" id="QRCode" src="assets/wechatpay.jpg" alt="">
         </div>
 
 
-        <h3 class="mt-3 font-weight-bold text-center">PRESENTED BY</h3>
+        <h3 class="mt-xl-5 mt-lg-4 mt-4 font-weight-bold text-center">PRESENTED BY</h3>
         <img class="img-fluid" src="assets/logos.jpg" alt="">
 
 
