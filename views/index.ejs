@@ -13,13 +13,15 @@
 
   <div class="container">
     <!--Left-->
-    <h1 class="mb-4 text-center mt-3 font-weight-bold">Donate for Wuhan Union Hospital</h1>
+    <h1 class="mb-5 text-center mt-1 font-weight-bold">Donate for Wuhan Union Hospital</h1>
     <div class="row">
       <div class="col-6 px-5 py-2" style="border-right: rgb(238,238,238) 1px solid;">
 
         <h2 class="">Donation Form</h2>
 
         <form method="POST" action="../donate-req">
+
+          <p class="font-weight-bold"><span class="font-weight-bold">PLEASE READ FIRST 请先阅读: </span> </p>
 
           <div class="form-group mt-3">
             <input type="text" required="required" id="fullName" name="fullName"/>
@@ -104,9 +106,7 @@
             <label for="textarea" class="control-label">Remark</label><i class="bar"></i>
           </div> -->
 
-          <input class="btn btn-primary mt-3 mr-2" onclick="document.getElementById('message').required = false; parseNumber()" type="submit"/>
-
-          <a class="btn btn-outline-primary mt-3 mr-2 text-primary" href="data">Donation History</a>
+          <input class="btn btn-lg btn-primary mt-3 px-5 font-weight-bold" onclick="document.getElementById('message').required = false; parseNumber()" type="submit"/>
 
 
         </form>
@@ -122,6 +122,9 @@
         <h3 class="mt-3 font-weight-light">Time Remaining</h3>
         <h3 class="text-right"><span class="display-4 font-weight-normal" id="clock"></span>
         </h3>
+
+        <a class="btn btn-lg btn-secondary mt-3 mr-3" href="data">Donation History</a>
+        <a class="btn btn-lg btn-secondary mt-3" href="data">something</a>
 
         <hr>
 

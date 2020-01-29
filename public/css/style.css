@@ -51,11 +51,11 @@ td {
 } */
 
 body {
-  /* background-image: url(../Halloween-BG.jpg); */
+   /*background-image: url(https://www.navitasventures.com/wp-content/uploads/2016/06/Material-design-background-514054880_2126x1416-1024x682.jpeg);*/
   background-size: cover !important;
 	background-repeat: no-repeat !important;
   background-position: center !important;
-	background-color: rgb(235, 235, 235)!important;
+	background-color: rgb(252, 241, 217) !important;
 	background-position: center;
   background-size: all;
   background-attachment: fixed;
@@ -155,7 +155,10 @@ body {
 .container {
   background-color: white;
   padding: 40px;
+  /*box-shadow: 8px 8px 0px 0px rgba(104, 51, 23, 0.39), -1px -1px 20px 0 rgba(0, 0, 0, 0.23), 8px 8px 16px 0 rgba(0, 0, 0, 0.33);*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-top: solid 6px;
+  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff, #e02aff, #e02aff) 5;
 }
 
 .credit-div {
@@ -181,15 +184,37 @@ html {
 }
 
 .btn {
-  border-radius: 3px;
-  /*box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12), 0px 3px 15px 1px rgba(0, 0, 0, 0.14);*/
+  border-radius: 0px;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12), 0px 3px 15px 1px rgba(0, 0, 0, 0.14);
 }
 
 
 .btn-primary {
   color: #fff;
-  background-color: #4285F4;
-  border-color: #4285F4;
+  background-color: #FF8800;
+  border-color: #FF8800;
+  border-bottom: #d1691e solid 4px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #cc6e00;
+  border-color: #cc6e00;
+  border-bottom: #954b19 solid 4px;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #d11e36;
+  border-color: #d11e36;
+  border-bottom: #920a20 solid 4px;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #a10c1f;
+  border-color: #a10c1f;
+  border-bottom: #75081a solid 4px;
 }
 
 
@@ -292,7 +317,7 @@ html {
   left: 50%;
   bottom: -0.0625rem;
   position: absolute;
-  background: #4285F4;
+  background: #FF8800;
   -webkit-transition: left 0.28s ease, width 0.28s ease;
   transition: left 0.28s ease, width 0.28s ease;
   z-index: 2;
@@ -351,7 +376,7 @@ html {
 .form-group select:focus ~ .control-label,
 .form-group input:focus ~ .control-label,
 .form-group textarea:focus ~ .control-label {
-  color: #4285F4;
+  color: #FF8800;
 }
 .form-group select:focus ~ .bar::before,
 .form-group input:focus ~ .bar::before,
@@ -451,13 +476,13 @@ html {
 /* Checked, Indeterminate */
 .pure-material-checkbox > input:checked,
 .pure-material-checkbox > input:indeterminate {
-  background-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  background-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 .pure-material-checkbox > input:checked + span::before,
 .pure-material-checkbox > input:indeterminate + span::before {
-  border-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
-  background-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  border-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
+  background-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 .pure-material-checkbox > input:checked + span::after,
@@ -491,7 +516,7 @@ html {
 }
 
 .pure-material-checkbox > input:active + span::before {
-  border-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  border-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 .pure-material-checkbox > input:checked:active + span::before {
@@ -588,18 +613,18 @@ html {
   border-radius: 50%;
   width: 19px;
   height: 19px;
-  background-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  background-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
   transform: translate(3.9px, 3.95px) scale(0);
   transition: transform 0.1s;
 }
 
 /* Checked */
 .pure-material-radio > input:checked {
-  background-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  background-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 .pure-material-radio > input:checked + span::before {
-  border-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  border-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 .pure-material-radio > input:checked + span::after {
@@ -627,7 +652,7 @@ html {
 }
 
 .pure-material-radio > input:active + span::before {
-  border-color: rgb(var(--pure-material-primary-rgb, 66, 134, 244));
+  border-color: rgb(var(--pure-material-primary-rgb, 225, 136, 0));
 }
 
 /* Disabled */
