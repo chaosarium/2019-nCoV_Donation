@@ -4,113 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Practise Room Sign-up</title>
-  <link rel="icon" href="../favicons/favicon.ico">
-  <link rel="stylesheet" href="../css/bootstrap.css">
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   -->
-  <link rel="stylesheet" href="../css/style.css">
+  <title>Donate for 2019-nCoV</title>
+  <link rel="icon" href="favicons/favicon.ico">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <div class="container smaller-container">
-    <h1 class="">Practise Room Sign-up <sup></sup></h1>
+  <div class="container">
+    <h1 class="font-weight-bold">Donation Information <sup></sup></h1>
     <hr>
-    <h3 class="mt-4"><%= roomOccupationStatus %></h3>
 
-    <form action="../cancel" method="POST">
+    <img src="assets/hospital.jpg" alt="" class="img-fluid">
 
-      <!-- information for cnacel request -->
+    <br>
 
-      <div class="form-group d-none">
-        <input type="text" id="fullName" name="fullName" value="<%= fullName %>" />
-      </div>
-
-      <div class="form-group d-none">
-        <input type="text" id="studentID" name="studentID" value="<%= studentID %>" />
-      </div>
-
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= date %>" readonly disabled/>
-        <label for="input" class="control-label">Date</label><i class="bar"></i>
-      </div>
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= room %>" readonly disabled/>
-        <label for="input" class="control-label">Room</label><i class="bar"></i>
-      </div>
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= time.substr(1, 2) + ":" + time.substr(3, 2) + "-" + time.substr(5, 2) + ":" + time.substr(7, 2) %>" readonly disabled/>
-        <label for="input" class="control-label">Time</label><i class="bar"></i>
-      </div>
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= fullName %>" readonly disabled/>
-        <label for="input" class="control-label">Full Name</label><i class="bar"></i>
-      </div>
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= grade %>" readonly disabled/>
-        <label for="input" class="control-label">Grade</label><i class="bar"></i>
-      </div>
-
-      <div class="form-group">
-        <input type="text" required="required" placeholder="<%= studentID %>" readonly disabled/>
-        <label for="input" class="control-label">Student ID</label><i class="bar"></i>
-      </div>
-
-      <div class="checkbox">
-        <label class="pure-material-checkbox">
-          <input type="checkbox" name="ensembleCheckbox" disabled <% if (ensembleStatus == true) { %> checked <% } %>>
-          <span>Small Ensemble</span>
-        </label>
-      </div>
-
-      <!-- <div class="form-group">
-        <input type="text" required="required" placeholder="<%= remark %>" readonly disabled/>
-        <label for="input" class="control-label">Remark</label><i class="bar"></i>
-      </div> -->
-
-      <div class="form-group mt-3">
-        <textarea id="remark" id="remark" name="remark" placeholder="<%= remark %>" readonly disabled></textarea>
-        <label for="textarea" class="control-label">Remark</label><i class="bar"></i>
-      </div>
-
-      <a class="btn btn-primary mr-2" href="..">Back</a>
-      <a class="btn btn-primary mr-2" href="../help">Help</a>
-      <button class="btn btn-primary mr-2" type="submit">Cancel Request</button>
-
-    </form>
-
-
-    <!-- <a class="btn btn-primary mt-4" href="/">Back</a> -->
-    <!-- <a class="btn btn-primary mt-4" href="/help">Help</a> -->
-    <!-- <a class="btn btn-primary mt-4" href="/cancel">Cancel Request</a> -->
-
-
-    <!-- <h3 class="mt-5 text-muted">Debug info:</h3>
-    <p><small class="text-muted">from info.ejs</small></p>
-    <p><small class="text-muted">Data = <%= date %></small></p>
-    <p><small class="text-muted">Data = <%= room %></small></p>
-    <p><small class="text-muted">Data = <%= time %></small></p>
-    <p><small class="text-muted">Data = <%= fullName %></small></p>
-    <p><small class="text-muted">Data = <%= grade %></small></p>
-    <p><small class="text-muted">Data = <%= studentID %></small></p>
-    <p><small class="text-muted">Data = <%= ensembleStatus %></small></p>
-    <p><small class="text-muted">Data = <%= remark %></small></p>
-    <p><small class="text-muted">Data = <%= JSON.stringify(organisedData) %></small></p> -->
-
+    <button class="btn btn-lg btn-primary mt-4 mb-0 px-5" onclick="window.history.back()">Back</button>
 
   </div>
-
-
   <!-- JQuery -->
   <!-- <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script> -->
   <!-- Bootstrap tooltips -->
   <!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
   <!-- Bootstrap core JavaScript -->
   <!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
+  <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
   <!-- <script src="/js/main.js"></script> -->
 </body>
 </html>

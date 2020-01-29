@@ -171,7 +171,6 @@ app.post("/donate-req", function(req, res){
 
 //Data Page
 app.get("/data", function(req, res){
- 
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err
 		var dbo = db.db(dbName)
@@ -183,63 +182,68 @@ app.get("/data", function(req, res){
   })
 });
 
+//Info Page
+app.get("/info", function(req, res){
+  res.render('info')
+});
+
 //Cancel Page
-app.get("/cancel", function(req, res){
-  res.render('cancel');
-});
-
-//Erase Page
-app.get("/erase", function(req, res){
-  res.render('erase');
-});
-
-//Cancel POST
-app.post("/cancel", function(req, res){
-  console.log("cancel post request recieved")
-  //get post info
-  var studentID = req.body.studentID
-  var operationPassword = req.body.operationPassword
-  console.log("request info: " + "|" + studentID + "|" + operationPassword + "|");
-  
-  //check password
-  if (crypto.createHmac('sha256', operationPassword).digest('hex') == operationPasswordHash) {
-    //Check ID availability
-      MongoClient.connect(url, function(err, db) {
-        if (err) throw err
-        var dbo = db.db(dbName)
-        dbo.collection(collectionName).find({StudentID: studentID}).toArray(function(err, result) {
-          if (err) throw err
-          if (result.length > 0) {
-            dbRemove(studentID);
-            res.render("info", {location: "data", infoTitle: "Operation Successful", infoMessage: "One occurance of " + studentID + " has been removed from the list"})
-          }
-          else {
-            res.render("info", {location: "cancel", infoTitle: "ERROR", infoMessage: "The requested student ID is invalid, pleas try again."})
-          }
-        });
-      });
-  }
-  else {
-    res.render("info", {location: "cancel", infoTitle: "ERROR", infoMessage: "Wrong operation password, please try again"})  }
-});
-
-//Erase POST
-app.post("/erase", function(req, res){
-  console.log("erase post request recieved")
-  //get post info
-  var operationPassword = req.body.operationPassword
-  var varificationQuestion = req.body.varificationQuestion
-  console.log("request info: " + "|" + operationPassword + "|" + varificationQuestion + "|");
-  
-  //check password
-  if (crypto.createHmac('sha256', operationPassword).digest('hex') == operationPasswordHash && varificationQuestion == 17) {
-    dbRemoveAll();
-    res.render("info", {location: "data", infoTitle: "Operation Successful", infoMessage: "All information has been erased."})
-  }
-  else {
-    res.render("info", {location: "erase", infoTitle: "ERROR", infoMessage: "Wrong operation password or varification question answer, please try again."})
-  }
-});
+// app.get("/cancel", function(req, res){
+//   res.render('cancel');
+// });
+//
+// //Erase Page
+// app.get("/erase", function(req, res){
+//   res.render('erase');
+// });
+//
+// //Cancel POST
+// app.post("/cancel", function(req, res){
+//   console.log("cancel post request recieved")
+//   //get post info
+//   var studentID = req.body.studentID
+//   var operationPassword = req.body.operationPassword
+//   console.log("request info: " + "|" + studentID + "|" + operationPassword + "|");
+//
+//   //check password
+//   if (crypto.createHmac('sha256', operationPassword).digest('hex') == operationPasswordHash) {
+//     //Check ID availability
+//       MongoClient.connect(url, function(err, db) {
+//         if (err) throw err
+//         var dbo = db.db(dbName)
+//         dbo.collection(collectionName).find({StudentID: studentID}).toArray(function(err, result) {
+//           if (err) throw err
+//           if (result.length > 0) {
+//             dbRemove(studentID);
+//             res.render("info", {location: "data", infoTitle: "Operation Successful", infoMessage: "One occurance of " + studentID + " has been removed from the list"})
+//           }
+//           else {
+//             res.render("info", {location: "cancel", infoTitle: "ERROR", infoMessage: "The requested student ID is invalid, pleas try again."})
+//           }
+//         });
+//       });
+//   }
+//   else {
+//     res.render("info", {location: "cancel", infoTitle: "ERROR", infoMessage: "Wrong operation password, please try again"})  }
+// });
+//
+// //Erase POST
+// app.post("/erase", function(req, res){
+//   console.log("erase post request recieved")
+//   //get post info
+//   var operationPassword = req.body.operationPassword
+//   var varificationQuestion = req.body.varificationQuestion
+//   console.log("request info: " + "|" + operationPassword + "|" + varificationQuestion + "|");
+//
+//   //check password
+//   if (crypto.createHmac('sha256', operationPassword).digest('hex') == operationPasswordHash && varificationQuestion == 17) {
+//     dbRemoveAll();
+//     res.render("info", {location: "data", infoTitle: "Operation Successful", infoMessage: "All information has been erased."})
+//   }
+//   else {
+//     res.render("info", {location: "erase", infoTitle: "ERROR", infoMessage: "Wrong operation password or varification question answer, please try again."})
+//   }
+// });
 
 //Listen
 app.listen(port, function(){
