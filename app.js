@@ -165,7 +165,7 @@ app.post("/donate-req", function(req, res){
   
   console.log("Adding to database")
   dbInsert(countNO, fullName, emailAddress, grade, donationAmount, paymentMethod, message, anonymousStatus);
-  res.send("Success");
+  res.redirect("../success");
 
 });
 
@@ -178,6 +178,19 @@ app.get("/data", function(req, res){
 			if (err) throw err
       db.close()   
       res.render('data', {dataList: result})
+		})
+  })
+});
+
+//Success Page
+app.get("/success", function(req, res){
+	MongoClient.connect(url, function(err, db) {
+		if (err) throw err
+		var dbo = db.db(dbName)
+		dbo.collection(collectionName).find({}).toArray(function(err, result) {
+			if (err) throw err
+      db.close()
+      res.render('success', {dataList: result})
 		})
   })
 });

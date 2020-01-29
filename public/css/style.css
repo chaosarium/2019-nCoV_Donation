@@ -51,12 +51,13 @@ td {
 } */
 
 body {
-   /*background-image: url(https://www.navitasventures.com/wp-content/uploads/2016/06/Material-design-background-514054880_2126x1416-1024x682.jpeg);*/
+   /*background-image: url(https://www.navitasventures.com/wp-content/uploads/2016/06/Material-design-background-514054880_2126x1416-1024x682.jpeg) !important;*/
   background-size: cover !important;
 	background-repeat: no-repeat !important;
   background-position: center !important;
-	background-color: rgb(252, 241, 217) !important;
-	background-position: center;
+  /*background-color: rgb(226, 226, 226) !important;*/
+  background: repeating-linear-gradient(-45deg, #133041, #133041 10px, #1f384d 10px, #1f384d 20px);
+  background-position: center;
   background-size: all;
   background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
