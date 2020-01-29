@@ -79,6 +79,9 @@ body {
   td, th {
     padding: 2px;
   }
+  .container {
+    padding: 20px;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -96,6 +99,9 @@ body {
   td, th {
     padding: 4px;
   }
+  .container {
+    padding: 30px;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -110,6 +116,9 @@ body {
   }
   td, th {
     padding: 4px;
+  }
+  .container {
+    padding: 40px;
   }
 }
 
@@ -129,6 +138,9 @@ body {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+  }
+  #leftBox {
+    border-right: rgb(238,238,238) 1px solid
   }
 }
 
@@ -154,7 +166,6 @@ body {
 
 .container {
   background-color: white;
-  padding: 40px;
   /*box-shadow: 8px 8px 0px 0px rgba(104, 51, 23, 0.39), -1px -1px 20px 0 rgba(0, 0, 0, 0.23), 8px 8px 16px 0 rgba(0, 0, 0, 0.33);*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-top: solid 6px;
