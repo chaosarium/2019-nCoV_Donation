@@ -18,7 +18,7 @@
 
     <hr>
 
-    <table class="mb-4 mt-3 table-responsive table-hover" style="min-width: 100%;">
+    <table class="mb-4 mt-3 table-hover" style="width: 100%;">
       <thead>
       <tr>
         <th class="text-center">#</th>
@@ -28,10 +28,10 @@
         <th class="text-center">Grade</th>
         <!--            <th class="text-center">Payment Method</th>-->
         <th class="text-center">Amount Donated</th>
-        <th class="text-center">Message</th>
+        <th class="text-center" style="width: 300px;">Message</th>
       </tr>
       </thead>
-      <tbody style="white-space: pre-wrap;">
+      <tbody>
       <% for (var i = 0; i < dataList.length; i++) { %>
         <tr>
           <td><%= dataList[i].serial %></td>
@@ -39,7 +39,7 @@
           <td><%= dataList[i].displayName %></td>
           <td><%= dataList[i].displayGrade %></td>
           <td><%= "¥" + dataList[i].donationAmount %></td>
-          <td style="white-space: pre-wrap;"><%= dataList[i].message %></td>
+          <td style="word-break: break-all"><%= dataList[i].message %></td>
         </tr>
       <% } %>
       </tbody>
