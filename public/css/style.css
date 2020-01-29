@@ -170,7 +170,10 @@ body {
   /*box-shadow: 8px 8px 0px 0px rgba(104, 51, 23, 0.39), -1px -1px 20px 0 rgba(0, 0, 0, 0.23), 8px 8px 16px 0 rgba(0, 0, 0, 0.33);*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-top: solid 6px;
-  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff, #e02aff, #e02aff) 5;
+  border-right: solid 0px;
+  border-left: solid 0px;
+  border-bottom: solid 0px;
+  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff, #e02aff, #e02aff) 6;
 }
 
 .credit-div {
