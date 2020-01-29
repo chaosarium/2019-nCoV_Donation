@@ -206,9 +206,9 @@ html {
 
 .btn-primary {
   color: #fff;
-  background-color: #FF8800;
-  border-color: #FF8800;
-  border-bottom: #d1691e solid 4px;
+  background-color: #FF8800 !important;
+  border-color: #FF8800 !important;
+  border-bottom: #d1691e solid 4px !important;
 }
 
 .btn-primary:hover {

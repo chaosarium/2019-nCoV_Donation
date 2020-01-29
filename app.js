@@ -31,7 +31,15 @@ const port = 2019
 const url = "mongodb://localhost:27017"
 const dbName = "nCoV"
 const collectionName = "donationRecords"
-var countNO = 1
+var countNO = 2
+var openStatus = true
+
+
+const job = new CronJob('00 59 23 01 FEB *', function() {
+  console.log('Closing donation');
+  openStatus = false;
+});
+job.start();
 
 //=================
 //====Functions====
@@ -130,23 +138,49 @@ function dbInsert(serial, fullName, emailAddress, grade, donationAmount, payment
 //========================
 //Home Page
 app.get("/", function(req, res){
-  var moneyCount = 0.00
   
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err
-		var dbo = db.db(dbName)
-		dbo.collection(collectionName).find({}).toArray(function(err, result) {
-			if (err) throw err
-			for (var i = 0; i < result.length; i++) {
-			  moneyCount = moneyCount + parseFloat(result[i].donationAmount)
-      }
-			moneyCount = parseFloat(moneyCount).toFixed(2)
-      console.log("Calculated total donation to be: ¥" + moneyCount)
-      db.close()   
-      res.render('index', {moneyCount: moneyCount});
+  if (openStatus == true) {
+    
+    var moneyCount = 0.00
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err
+      var dbo = db.db(dbName)
+      dbo.collection(collectionName).find({}).toArray(function(err, result) {
+        if (err) throw err
+        for (var i = 0; i < result.length; i++) {
+          moneyCount = moneyCount + parseFloat(result[i].donationAmount)
+        }
+        moneyCount = parseFloat(moneyCount).toFixed(2)
+        console.log("Calculated total donation to be: ¥" + moneyCount)
+        db.close()
+        res.render('index', {moneyCount: moneyCount});
+      
+      })
+    })
+    
+  } else {
+  
+    console.log("closed donation")
+    var moneyCount = 0.00
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err
+      var dbo = db.db(dbName)
+      dbo.collection(collectionName).find({}).toArray(function(err, result) {
+        if (err) throw err
+        for (var i = 0; i < result.length; i++) {
+          moneyCount = moneyCount + parseFloat(result[i].donationAmount)
+        }
+        moneyCount = parseFloat(moneyCount).toFixed(2)
+        console.log("Calculated total donation to be: ¥" + moneyCount)
+        db.close()
+        res.render('closed', {moneyCount: moneyCount});
+      
+      })
+    })
+    
+  }
+  
 
-		})
-  })
 });
 
 //Donate POST

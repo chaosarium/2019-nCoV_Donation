@@ -18,7 +18,7 @@
       <!--Mobile-->
       <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2 d-lg-none">
 
-        <h3 class="font-weight-light">Fundraising Status <br class="d-sm-none"> 捐款总额</h3>
+        <h3 class="font-weight-light">Amount Raised <br class="d-sm-none"> 捐款总额</h3>
         <h3 class="text-right"><span class="display-4 font-weight-bold">¥ <%= moneyCount%></span><span class="font-weight-light small"> in total</span></h3>
 
         <h3 class="mt-3 font-weight-light">Time Remaining <br class="d-sm-none"> 剩余时间</h3>
@@ -32,19 +32,19 @@
       <!--Left-->
       <div class="col-lg-6 col-12 px-xl-5 px-xl-3 py-2" id="leftBox">
 
-        <h2 class="font-weight-bold">Donation Form</h2>
+        <h2 class="font-weight-bold">Donation Closed</h2>
 
         <form method="POST" action="../donate-req">
 
           <p class="mb-4"><span class="font-weight-bold">PLEASE READ FIRST 请先阅读: </span>This donation platform is designed for the NCPA community. To donate, first specify the amount that you wish to donate and pay by scanning the QR code. You must include your name in the payment note. Then, fill out the rest of the form and hit "Submit". If you are not a current NCPA student, please choose "Other" for your grade. 该捐款平台是为NCPA社区（包括老师，父母，校友等）设计的。 要捐款，请先指定您要捐款的金额，然后扫描二维码捐款。 您必须在付款备注中包括您的姓名和邮件地址。 然后，填写表格的其余部分，然后点击“提交”。 如果您不是当前的NCPA学生，请为您的成绩选择“其他”。</p>
 
           <div class="form-group mt-3">
-            <input type="text" required="required" id="fullName" name="fullName"/>
+            <input type="text" required="required" id="fullName" name="fullName" readonly placeholder="Donation Closed"/>
             <label for="input" class="control-label">Your Name 姓名 (Chinese AND English)</label><i class="bar"></i>
           </div>
 
           <div class="form-group mb-3">
-            <input type="text" required="required" id="emailAddress" name="emailAddress"/>
+            <input type="text" required="required" id="emailAddress" name="emailAddress" placeholder="Donation Closed" readonly/>
             <label for="input" class="control-label">Your Email Address 邮件地址</label><i class="bar"></i>
           </div>
 
@@ -52,37 +52,37 @@
             <span class="mr-1 mb-4 ">Grade 年级: </span>
             <br>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="7">
+              <input type="radio" name="grade" required="required" value="7" readonly disabled>
               <span>7</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="8">
+              <input type="radio" name="grade" required="required" value="8" readonly disabled>
               <span>8</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="9">
+              <input type="radio" name="grade" required="required" value="9" readonly disabled>
               <span>9</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="10">
+              <input type="radio" name="grade" required="required" value="10" readonly disabled>
               <span>10</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="11">
+              <input type="radio" name="grade" required="required" value="11" readonly disabled>
               <span>11</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="12">
+              <input type="radio" name="grade" required="required" value="12" readonly disabled>
               <span>12</span>
             </label>
             <label class="pure-material-radio mr-1">
-              <input type="radio" name="grade" required="required" value="Other">
+              <input type="radio" name="grade" required="required" value="Other" readonly disabled>
               <span>Other 其他</span>
             </label>
           </div>
 
           <div class="form-group mb-1 mt-3">
-            <input type="number" required="required" id="donationAmount" name="donationAmount" step="0.01" min="0.01"/>
+            <input type="number" required="required" id="donationAmount" name="donationAmount" placeholder="0.00" step="0.01" min="0.01" readonly/>
             <label for="input" class="control-label">Amount to Donate 捐款金额 (In RMB)</label><i class="bar"></i>
           </div>
 
@@ -100,20 +100,20 @@
           </div>
 
           <div class="form-group mt-3">
-            <textarea id="message" name="message" required></textarea>
+            <textarea id="message" name="message" required placeholder="Donation Closed" disabled></textarea>
             <label for="message" class="control-label">Your Message 你的留言 (Optional)</label><i class="bar"></i>
           </div>
 
           <div class="checkbox">
             <label class="pure-material-checkbox">
-              <input type="checkbox" name="anonymousStatus" id="anonymousStatus">
+              <input type="checkbox" name="anonymousStatus" id="anonymousStatus" disabled>
               <span>Keep my donation private (If checked, your name, grade, and email will not be displayed on the donation list but will still be visible to the fundraising group.) 保持我的捐款不公开（如果选中，您的姓名，年级和电子邮件将不会显示在捐款列表中，但仍对筹款团队可见。）</span>
             </label>
           </div>
 
           <div class="checkbox mt-3">
             <label class="pure-material-checkbox">
-              <input type="checkbox" name="confirmStatus" id="confirmStatus" required>
+              <input type="checkbox" name="confirmStatus" id="confirmStatus" required disabled>
               <span>By checking this box, you confirm that you have entered the required information accurately and transferred the amount of money you have specified by scanning the QR code. Submitting the form without accurate information causes problems for the the fundraising group, which is totally not cool. 通过选中此框，您确认您输入了正确的信息，并通过扫描二维码转帐了指定的金额。 在没有准确信息的情况下提交表格会给筹款团队造成麻烦，这绝对不酷。</span>
             </label>
           </div>
@@ -123,7 +123,7 @@
             <label for="textarea" class="control-label">Remark</label><i class="bar"></i>
           </div> -->
 
-          <input class="btn btn-lg btn-primary mt-3 px-5 font-weight-bold" onclick="document.getElementById('message').required = false; parseNumber()" type="submit"/>
+          <input disabled class="btn btn-lg btn-primary mt-3 px-5 font-weight-bold" onclick="document.getElementById('message').required = false; parseNumber()" type="submit"/>
 
 
         </form>
@@ -151,7 +151,7 @@
         <h2 class="mt-3 mb-3 text-center font-weight-bold">Donation QR Code</h2>
         <p>If you wish to switch to Alipay, choose "Alipay" in the donation form. Please make sure that the payment note includes your name and that the amount you paied matches the amount you have specified in the form. 如果您希望切换到支付宝，请在捐赠表格中选择“支付宝”。 请确保付款备注中包含您的姓名和电子邮件，并且您支付的金额与表格中指定的金额相符</p>
         <div class="mx-xl-5 text-md-center">
-          <img class="img-fluid mt-2" id="QRCode" src="assets/wechatpay.jpg" alt="">
+          <img style="filter: opacity(20%)" class="img-fluid mt-2" id="QRCode" src="assets/wechatpay.jpg" alt="">
         </div>
 
         <div class="text-center d-lg-none">
