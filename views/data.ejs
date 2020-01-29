@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Donate for 2019-nCoV</title>
-  <link rel="icon" href="favicons/favicon.ico">
+  <link rel="icon" href="assets/logos2.jpg">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,28 +15,28 @@
     <h1 class="font-weight-bold">Donation History <sup></sup></h1>
     <hr>
 
-      <table class="mb-4 mt-3 table-responsive-md table-hover" style="min-width: 100%;">
+      <table class="mb-4 mt-3 table-responsive table-hover" style="min-width: 100%;">
         <thead>
           <tr>
             <th class="text-center">#</th>
             <th class="text-center">Timestamp</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Email</th>
+<!--            <th class="text-center">Email</th>-->
             <th class="text-center">Grade</th>
-            <th class="text-center">Payment Method</th>
+<!--            <th class="text-center">Payment Method</th>-->
             <th class="text-center">Amount Donated</th>
+            <th class="text-center">Message</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="white-space: pre-wrap;">
           <% for (var i = 0; i < dataList.length; i++) { %>
             <tr>
               <td><%= dataList[i].serial %></td>
               <td><%= dataList[i].timeStamp %></td>
               <td><%= dataList[i].displayName %></td>
-              <td><%= dataList[i].displayEmail %></td>
               <td><%= dataList[i].displayGrade %></td>
-              <td><%= dataList[i].displayPaymentMethod %></td>
               <td><%= "¥" + dataList[i].donationAmount %></td>
+              <td style="white-space: pre-wrap;"><%= dataList[i].message %></td>
             </tr>
           <% } %>
         </tbody>

@@ -110,7 +110,7 @@ body {
 
   .credit-div {
     max-width: 720px;
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   table {
     font-size: 0.7rem;
@@ -130,7 +130,7 @@ body {
     max-width: 960px;
   }
   table {
-    font-size: 1rem;
+    font-size: 0.98rem;
   }
   td, th {
     padding: 5px;
