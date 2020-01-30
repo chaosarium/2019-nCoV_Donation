@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Donate to Wuhan Union Hospital</title>
+  <link rel="icon" href="assets/logos2.jpg">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="font-weight-bold">All Data <sup></sup></h1>
+    <hr>
+
+      <table class="mb-4 mt-3 table-hover table-responsive" style="width: 100%;">
+        <thead>
+          <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Timestamp</th>
+            <th class="text-center">Real Name</th>
+            <th class="text-center">Display Name</th>
+            <th class="text-center">Email Address</th>
+            <th class="text-center">Display Email</th>
+            <th class="text-center">Grade</th>
+            <th class="text-center">Display Grade</th>
+            <th class="text-center">Amount Donated (¥)</th>
+            <th class="text-center">Payment Method</th>
+            <th class="text-center">Display Payment Method</th>
+            <th class="text-center" style="width: 300px;">Message</th>
+            <th class="text-center">Anonymous Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i = 0; i < dataList.length; i++) { %>
+            <tr>
+              <td><%= dataList[i].serial %></td>
+              <td><%= dataList[i].timeStamp %></td>
+              <td><%= dataList[i].fullName %></td>
+              <td><%= dataList[i].displayName %></td>
+              <td><%= dataList[i].emailAddress %></td>
+              <td><%= dataList[i].displayEmail %></td>
+              <td><%= dataList[i].grade %></td>
+              <td><%= dataList[i].displayGrade %></td>
+              <td><%= dataList[i].donationAmount %></td>
+              <td><%= dataList[i].paymentMethod %></td>
+              <td><%= dataList[i].displayPaymentMethod %></td>
+              <td style="word-break: break-all"><%= dataList[i].message %></td>
+              <td><%= dataList[i].anonymousStatus %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+
+    <button class="btn btn-lg btn-primary mt-0 mb-0 px-5" onclick="window.history.back()">Back</button>
+
+  </div>
+  <!-- JQuery -->
+  <!-- <script type="text/javascript" src="/js/jquery-3.4.0.min.js"></script> -->
+  <!-- Bootstrap tooltips -->
+  <!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
+  <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
+  <!-- <script src="/js/main.js"></script> -->
+</body>
+</html>

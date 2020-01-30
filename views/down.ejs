@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Donate to Wuhan Union Hospital</title>
+  <link rel="icon" href="assets/logos2.jpg">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!--Left-->
+    <h1 class="mb-xl-5 mb-4 text-center mt-1 font-weight-bold">Donate to Wuhan Union Hospital</h1>
+    <div class="row">
+      <!--Mobile-->
+      <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2 d-lg-none">
+
+        <h3 class="font-weight-light">Fundraising Status <br class="d-sm-none"> 捐款总额</h3>
+        <h3 class="text-right"><span class="display-4 font-weight-bold">¥ 62772.00</span><span class="font-weight-light small"> in total</span></h3>
+
+        <h3 class="mt-3 font-weight-light">Time Remaining <br class="d-sm-none"> 剩余时间</h3>
+        <h3 class="text-right"><span class="display-4 font-weight-bold" id="clock2"></span>
+        </h3>
+
+        <hr>
+
+      </div>
+
+      <!--Left-->
+      <div class="col-lg-6 col-12 px-xl-5 px-xl-3 py-2" id="leftBox">
+
+        <h2 class="font-weight-bold">System Maintenance</h2>
+        <h2 class="font-weight-bold">系统维护</h2>
+
+        <p>Fighting bugs, please wait patiently</p>
+        <p>This shouldn't take more than 10 minutes</p>
+        <p>正在维护，请在10分钟后重试</p>
+
+      </div>
+
+      <!--Right-->
+      <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2">
+
+        <div class="d-none d-lg-block">
+          <h3 class="font-weight-light">Fundraising Status 捐款总额</h3>
+          <h3 class="text-right"><span class="display-4 font-weight-bold">¥ 62772.00</span><span class="font-weight-light small"> in total</span></h3>
+
+          <h3 class="mt-3 font-weight-light">Time Remaining 剩余时间</h3>
+          <h3 class="text-right"><span class="display-4 font-weight-bold" id="clock"></span>
+          </h3>
+
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-3" href="data">Donation History</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3" href="info">Donation Information</a>
+        </div>
+
+
+        <hr class="mt-lg-4 mb-4">
+
+        <h2 class="mt-3 mb-3 text-center font-weight-bold">Donation QR Code</h2>
+        <p>If you wish to switch to Alipay, choose "Alipay" in the donation form. Please make sure that the payment note includes your name and that the amount you paied matches the amount you have specified in the form. 如果您希望切换到支付宝，请在捐赠表格中选择“支付宝”。 请确保付款备注中包含您的姓名，并且您支付的金额与表格中指定的金额相符</p>
+
+        <div class="text-center d-lg-none">
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-sm-3 mt-3" href="data">Donation History</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mt-3" href="info">Donation Information</a>
+        </div>
+
+
+        <h3 class="mt-xl-5 pt-xl-2 mt-lg-2 mt-4 font-weight-bold text-center">INITIATED BY</h3>
+        <img class="img-fluid" src="assets/logos.jpg" alt="">
+
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <div class="credit-div">
+    <p class="text-left credit-text float-left" style="width: 100%;">Server code: v1.0, Website: v1.3, initiated by Vibe, NHS, StuGo, and Tri-M, designed and programmed by Leon L, Copyright ©Humanity</p>
+  </div>
+
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+  <!-- Countdown -->
+  <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script type="text/javascript" src="/js/bootstrap.js"></script> -->
+<!--   <script src="../public/js/main.js"></script>-->
+  <script>
+      $('#clock').countdown('2020/2/1 23:59:00 GMT+8', function(event) {
+          var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+          $(this).html(event.strftime(totalHours + ':%M:%S'));
+      });
+
+      $('#clock2').countdown('2020/2/1 23:59:00 GMT+8', function(event) {
+          var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+          $(this).html(event.strftime(totalHours + ':%M:%S'));
+      });
+      
+      function parseNumber() {
+        valueString = document.getElementById("donationAmount").value.toString()
+        detectionStatus = false
+        console.log(valueString)
+        for (var i = 0; i < valueString.length; i++) {
+          console.log(valueString[i])
+          if (valueString[i] == ".") {
+            detectionStatus = true
+            console.log("detected")
+          }
+        }
+
+        console.log(detectionStatus)
+        if (detectionStatus == false) {
+          console.log("parshing")
+          document.getElementById("donationAmount").value = document.getElementById("donationAmount").value + ".00"
+        }
+
+      }
+
+  </script>
+</body>
+</html>
