@@ -31,8 +31,8 @@ const port = 2019
 const url = "mongodb://localhost:27017"
 const dbName = "nCoV"
 const collectionName = "donationRecords"
-var countNO = 2
-var openStatus = true
+var countNO = 330
+var openStatus = false
 
 
 const job = new CronJob('00 59 23 01 FEB *', function() {
@@ -90,7 +90,7 @@ function dbInsert(serial, fullName, emailAddress, grade, donationAmount, payment
     if (err) console.log(err);
     var dbo = db.db(dbName);
     //create object
-    var myobj = {serial: serial, timeStamp: getDateTime().day + "/" + getDateTime().month + "/" + getDateTime().year + " " + getDateTime().hour + ":" + getDateTime().min + ":" + getDateTime().sec, fullName: fullName, displayName: displayName, emailAddress: displayEmail, displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
+    var myobj = {serial: serial, timeStamp: getDateTime().day + "/" + getDateTime().month + "/" + getDateTime().year + " " + getDateTime().hour + ":" + getDateTime().min + ":" + getDateTime().sec, fullName: fullName, displayName: displayName, emailAddress: emailAddress, displayEmail: displayEmail, grade: grade, displayGrade: displayGrade, donationAmount: donationAmount, paymentMethod: paymentMethod, displayPaymentMethod: displayPaymentMethod, message: message, anonymousStatus: anonymousStatus};
 
     //insert document
 		dbo.collection(collectionName).insertOne(myobj, function(err, res) {
@@ -232,6 +232,11 @@ app.get("/success", function(req, res){
 //Info Page
 app.get("/info", function(req, res){
   res.render('info')
+});
+
+//Credits Page
+app.get("/credits", function(req, res){
+  res.render('credits')
 });
 
 //Cancel Page

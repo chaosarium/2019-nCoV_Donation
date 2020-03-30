@@ -32,7 +32,7 @@
           <% for (var i = 0; i < dataList.length; i++) { %>
             <tr>
               <td><%= dataList[i].serial %></td>
-              <td><%= dataList[i].timeStamp %></td>
+              <td><%= dataList[i].timeStamp + " GMT+8" %></td>
               <td><%= dataList[i].displayName %></td>
               <td><%= dataList[i].displayGrade %></td>
               <td><%= "¥" + dataList[i].donationAmount %></td>

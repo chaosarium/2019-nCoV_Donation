@@ -12,14 +12,25 @@
 <body>
 
   <div class="container">
+
     <!--Left-->
-    <h1 class="mb-xl-5 mb-4 text-center mt-1 font-weight-bold">Donate to Wuhan Union Hospital</h1>
+    <h1 class="mb-xl-4 mb-4 text-center mt-1 font-weight-bold">Donate to Wuhan Union Hospital</h1>
+
+
+    <div class="alert alert-danger mx-4" style="border-radius: 0;" role="alert">
+      The credit list for this donation project is now available <a href="credits" class="alert-link">here</a>.
+    </div>
+
+
     <div class="row">
       <!--Mobile-->
       <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2 d-lg-none">
 
-        <h3 class="font-weight-light">Amount Raised <br class="d-sm-none"> 捐款总额</h3>
+        <h3 class="font-weight-light">Amount Reported <br class="d-sm-none"> 捐款总额</h3>
         <h3 class="text-right"><span class="display-4 font-weight-bold">¥ <%= moneyCount%></span><span class="font-weight-light small"> in total</span></h3>
+
+        <h3 class="font-weight-light">Amount Recieved <br class="d-sm-none"> 实收总额</h3>
+        <h3 class="text-right"><span class="display-4 font-weight-bold">¥ 76030.60</span><span class="font-weight-light small"> in total</span></h3>
 
         <h3 class="mt-3 font-weight-light">Time Remaining <br class="d-sm-none"> 剩余时间</h3>
         <h3 class="text-right"><span class="display-4 font-weight-bold" id="clock2"></span>
@@ -36,7 +47,8 @@
 
         <form method="POST" action="../donate-req">
 
-          <p class="mb-4"><span class="font-weight-bold">PLEASE READ FIRST 请先阅读: </span>This donation platform is designed for the NCPA community. To donate, first specify the amount that you wish to donate and pay by scanning the QR code. You must include your name in the payment note. Then, fill out the rest of the form and hit "Submit". If you are not a current NCPA student, please choose "Other" for your grade. 该捐款平台是为NCPA社区（包括老师，父母，校友等）设计的。 要捐款，请先指定您要捐款的金额，然后扫描二维码捐款。 您必须在付款备注中包括您的姓名和邮件地址。 然后，填写表格的其余部分，然后点击“提交”。 如果您不是当前的NCPA学生，请为您的年级选择“其他”。</p>
+          <p class="mb-2"><span class="font-weight-bold">PLEASE READ FIRST 请先阅读: </span>This donation platform is designed for the NCPA community. To donate, first specify the amount that you wish to donate and pay by scanning the QR code. You must include your name in the payment note. Then, fill out the rest of the form and hit "Submit". If you are not a current NCPA student, please choose "Other" for your grade. 该捐款平台是为NCPA社区（包括老师，父母，校友等）设计的。 要捐款，请先指定您要捐款的金额，然后扫描二维码捐款。 您必须在付款备注中包括您的姓名和邮件地址。 然后，填写表格的其余部分，然后点击“提交”。 如果您不是当前的NCPA学生，请为您的年级选择“其他”。</p>
+          <p class="mb-4 font-weight-bold text-danger mt-1">本次募捐为内部募捐，不接受任何非NCPA社群的社会组织或个人捐款。</p>
 
           <div class="form-group mt-3">
             <input type="text" required="required" id="fullName" name="fullName" readonly placeholder="Donation Closed"/>
@@ -103,7 +115,7 @@
           <div class="text-center d-lg-none">
             <h2 class="mt-3 mb-3 text-center font-weight-bold">Donation QR Code</h2>
             <p class="text-left">If you wish to switch to Alipay, choose "Alipay" in the donation form. Please make sure that the payment note includes your name and that the amount you paied matches the amount you have specified in the form. 如果您希望切换到支付宝，请在捐赠表格中选择“支付宝”。 请确保付款备注中包含您的姓名，并且您支付的金额与表格中指定的金额相符</p>
-            <img style="max-width: 400px;" class="img-fluid my-2 " id="QRCode2" src="assets/wechatpay.jpg" alt="">
+            <img class="img-fluid my-2 " id="QRCode2" src="assets/wechatpay.jpg" alt="">
           </div>
 
           <div class="form-group mt-3">
@@ -141,15 +153,23 @@
       <div class="col-lg-6 col-12 px-xl-5 px-lg-3 py-2">
 
         <div class="d-none d-lg-block">
-          <h3 class="font-weight-light">Fundraising Status 捐款总额</h3>
+
+          <h3 class="font-weight-light">Amount Reported 捐款总额</h3>
           <h3 class="text-right"><span class="display-4 font-weight-bold">¥ <%= moneyCount%></span><span class="font-weight-light small"> in total</span></h3>
+  
+          <h3 class="mt-3 font-weight-light">Amount Recieved 实收总额</h3>
+          <h3 class="text-right"><span class="display-4 font-weight-bold">¥ 76030.60</span><span class="font-weight-light small"> in total</span></h3>
 
           <h3 class="mt-3 font-weight-light">Time Remaining 剩余时间</h3>
           <h3 class="text-right"><span class="display-4 font-weight-bold" id="clock"></span>
+
+
+
           </h3>
 
-          <a class="btn btn-lg btn-secondary mt-lg-3 mr-3" href="data">Donation History</a>
-          <a class="btn btn-lg btn-secondary mt-lg-3" href="info">Donation Information</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-3" href="data">Donation History 平台数据</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-3" href="info">Donation Information 协和医院账号信息</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3" href="credits">Project Credits</a>
         </div>
 
 
@@ -167,8 +187,9 @@
         </div>
 
         <div class="text-center d-lg-none">
-          <a class="btn btn-lg btn-secondary mt-lg-3 mr-sm-3 mt-3" href="data">Donation History</a>
-          <a class="btn btn-lg btn-secondary mt-lg-3 mt-3" href="info">Donation Information</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-sm-3 mt-3" href="data">Donation History 平台数据</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mr-sm-3 mt-3" href="info">Donation Information 协和医院账号信息</a>
+          <a class="btn btn-lg btn-secondary mt-lg-3 mt-3" href="credits">Project Credits</a>
         </div>
 
 
